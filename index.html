@@ -333,6 +333,13 @@
       border-radius: 4px;
       font-size: 0.7rem;
       color: #cbd5e1;
+      text-decoration: none;
+      display: inline-block;
+    }
+    a.source-tag:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.2);
+      color: #fff;
     }
 
     /* ----- PRINT STYLES ----- */
@@ -369,8 +376,8 @@
     <p>Powered by aggregated mainstream predictions, precursor awards, and market data. Pre-filled for the March 15 telecast.</p>
     
     <div class="tabs">
-      <button class="tab-btn active" onclick="switchTab('ballot')">📋 Digital Play-Along Ballot</button>
-      <button class="tab-btn" onclick="switchTab('analysis')">📊 Category Analysis & Picks</button>
+      <button class="tab-btn active" data-tab="ballot" onclick="switchTab('ballot', event)">📋 Ballot Picks</button>
+      <button class="tab-btn" data-tab="analysis" onclick="switchTab('analysis', event)">📊 Category Analysis & Picks</button>
     </div>
   </header>
 
@@ -400,12 +407,29 @@
 
   <script>
     // Tab Switching Logic
-    function switchTab(tabId) {
-      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    const tabHashMap = {
+      ballot: "#ballot-picks",
+      analysis: "#category-analysis-picks"
+    };
+
+    function getTabFromHash() {
+      const currentHash = window.location.hash.toLowerCase();
+      if (currentHash === tabHashMap.analysis) return "analysis";
+      return "ballot";
+    }
+
+    function switchTab(tabId, event) {
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.tab === tabId);
+      });
       document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-      
-      event.target.classList.add('active');
       document.getElementById(`${tabId}-section`).classList.add('active');
+
+      if (window.location.hash !== tabHashMap[tabId]) {
+        window.history.replaceState(null, '', tabHashMap[tabId]);
+      }
+
+      if (event) event.preventDefault();
     }
 
     // FULL RICH DATA EXTRACT (Restored weighting, challengers, sources, and full text)
@@ -633,6 +657,35 @@
       return html;
     }
 
+    const sourceLinks = {
+      "Deadline": "https://deadline.com/lists/2026-oscars-predictions-winners-academy-awards/",
+      "Variety": "https://variety.com/lists/2026-oscars-predictions/",
+      "Vanity Fair": "https://www.vanityfair.com/hollywood/story/oscar-winner-predictions-2026",
+      "New Yorker": "https://www.newyorker.com/culture/the-current-cinema/the-oscars-who-will-win-and-who-should-win",
+      "NYT The Daily transcript": "https://www.nytimes.com/2026/03/08/podcasts/the-daily/oscars-2026-who-will-win-and-who-should-win.html?unlocked_article_code=1.SVA.7UeO.AmNe1vFlJizm&smid=nytcore-ios-share",
+      "NYT The Daily": "https://www.nytimes.com/2026/03/08/podcasts/the-daily/oscars-2026-who-will-win-and-who-should-win.html?unlocked_article_code=1.SVA.7UeO.AmNe1vFlJizm&smid=nytcore-ios-share",
+      "Polymarket": "https://polymarket.com/predictions/oscars",
+      "Actor Awards": "https://www.actorawards.org/media/news/releases/outstanding-film-and-television-performances-honored-32nd-annual-actor-awards",
+      "Golden Globes": "https://goldenglobes.com/winners-nominees/",
+      "Critics Choice": "https://www.criticschoice.com/2026/01/05/one-battle-after-another-wins-best-picture-at-the-31st-annual-critics-choice-awards/",
+      "BAFTA": "https://www.bafta.org/awards/film/",
+      "Annie Awards": "https://annieawards.org/nominees/",
+      "Artios": "https://www.castingsociety.com/news/11475633",
+      "ASC": "https://theasc.com/news/40th-asc-awards-winners-bauman",
+      "PGA": "https://producersguild.org/2026-pga-awards-winners/",
+      "DGA": "https://www.dga.org/News/PressReleases/2026/260207_78th_Annual-DGA-Award-Winners",
+      "Independent Spirit": "https://www.filmindependent.org/press-releases/film-independent-celebrates-2026-spirit-awards-winners-at-41st-annual-ceremony/",
+      "ACE context": "https://americancinemaeditors.org/eddie-winners/",
+      "LA Times": "https://www.latimes.com/entertainment-arts/awards/story/2026-03-11/2026-oscars-predictions-picture-actor-actress-director-more",
+      "CAS": "https://cinemaaudiosociety.org/62nd-cas-awards-winners/",
+      "MPSE context": "https://www.mpse.org/page-18247",
+      "VES": "https://vesglobal.org/press-releases/24th-annual-ves-awards-winners/",
+      "WGA": "https://awards.wga.org/awards/nominees-winners",
+      "People — Amy Madigan Critics Choice quote": "https://people.com/critics-choice-awards-2026-best-supporting-actress-amy-madigan-11876053",
+      "Oscars official rules/dates page": "https://press.oscars.org/news/awards-rules-and-campaign-promotional-regulations-approved-98th-oscarsr",
+      "ABC / TV schedule listing": "https://www.tvinsider.com/network/abc/schedule/"
+    };
+
     // Render Ballot
     const ballotContainer = document.getElementById('ballot-container');
     ballotContainer.innerHTML = buildBallotColumn(col1Cats) + buildBallotColumn(col2Cats) + buildBallotColumn(col3Cats);
@@ -651,7 +704,11 @@
     oscarData.forEach(d => {
       
       // Build source tags
-      let sourceHTML = d.sources.map(s => `<span class="source-tag">${s}</span>`).join("");
+      let sourceHTML = d.sources.map(source => {
+        const sourceUrl = sourceLinks[source];
+        if (!sourceUrl) return `<span class="source-tag">${source}</span>`;
+        return `<a class="source-tag" href="${sourceUrl}" target="_blank" rel="noopener noreferrer">${source}</a>`;
+      }).join("");
 
       analysisHTML += `
         <div class="card ${d.tier}">
@@ -694,6 +751,10 @@
       `;
     });
     analysisContainer.innerHTML = analysisHTML;
+
+    // Initialize tab from URL hash and keep in sync with back/forward navigation
+    switchTab(getTabFromHash());
+    window.addEventListener('hashchange', () => switchTab(getTabFromHash()));
 
   </script>
 </body>
