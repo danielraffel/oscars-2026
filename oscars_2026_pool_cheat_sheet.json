@@ -1,0 +1,507 @@
+{
+  "built_at": "2026-03-12",
+  "methodology": {
+    "primary": "Mainstream-only percentages are my own estimate after reading the requested prediction pieces and then adjusting for late guild/precursor results.",
+    "secondary": "With-Polymarket percentages are a 70/30 blend of my mainstream estimate and Polymarket's top-line market price for the category leader.",
+    "note": "Deadline and Variety influenced the model mostly through indexed previews/snippets because their pages were only partially accessible in my browsing environment."
+  },
+  "ballot": [
+    {
+      "order": 1,
+      "category": "Actor in a Leading Role",
+      "nominees": [
+        "Timothée Chalamet - Marty Supreme",
+        "Leonardo DiCaprio - One Battle after Another",
+        "Ethan Hawke - Blue Moon",
+        "Michael B. Jordan - Sinners",
+        "Wagner Moura - The Secret Agent"
+      ],
+      "mainstream_pick": "Michael B. Jordan - Sinners",
+      "mainstream_pct": 56,
+      "combined_pick": "Michael B. Jordan - Sinners",
+      "combined_pct": 55,
+      "market_leader": "Michael B. Jordan - 53%",
+      "challenger": "Timothée Chalamet - Marty Supreme",
+      "why": "Variety's top-line forecast and Vanity Fair both land on Michael B. Jordan, while Deadline's indexed snippet tied the race to his late-run wins. Timothée Chalamet is still live because he took both the Globe and Critics Choice.",
+      "source_support": "Vanity Fair; Variety snippet; Deadline snippet; Actor Awards; Golden Globes; Critics Choice",
+      "tier": "toss-up"
+    },
+    {
+      "order": 2,
+      "category": "Actor in a Supporting Role",
+      "nominees": [
+        "Benicio Del Toro - One Battle after Another",
+        "Jacob Elordi - Frankenstein",
+        "Delroy Lindo - Sinners",
+        "Sean Penn - One Battle after Another",
+        "Stellan Skarsgård - Sentimental Value"
+      ],
+      "mainstream_pick": "Sean Penn - One Battle after Another",
+      "mainstream_pct": 68,
+      "combined_pick": "Sean Penn - One Battle after Another",
+      "combined_pct": 69,
+      "market_leader": "Sean Penn - 72%",
+      "challenger": "Stellan Skarsgård - Sentimental Value / Delroy Lindo - Sinners",
+      "why": "Sean Penn is the cleanest consensus across the mainstream prediction pieces I could verify, and BAFTA also went his way. Delroy Lindo is the upside upset if Sinners starts running hot all night.",
+      "source_support": "Vanity Fair; New Yorker; Deadline snippet; BAFTA; Polymarket",
+      "tier": "lean"
+    },
+    {
+      "order": 3,
+      "category": "Actress in a Leading Role",
+      "nominees": [
+        "Jessie Buckley - Hamnet",
+        "Rose Byrne - If I Had Legs I'd Kick You",
+        "Kate Hudson - Song Sung Blue",
+        "Renate Reinsve - Sentimental Value",
+        "Emma Stone - Bugonia"
+      ],
+      "mainstream_pick": "Jessie Buckley - Hamnet",
+      "mainstream_pct": 96,
+      "combined_pick": "Jessie Buckley - Hamnet",
+      "combined_pct": 96,
+      "market_leader": "Jessie Buckley - 97%",
+      "challenger": "Rose Byrne - If I Had Legs I'd Kick You",
+      "why": "This is the closest thing to a free square. Vanity Fair and The New Yorker both call it the easiest acting race, and the New York Times Daily transcript frames Buckley as the consensus winner. She also has Globe, Critics Choice, and BAFTA support.",
+      "source_support": "Vanity Fair; New Yorker; NYT The Daily transcript; Golden Globes; Critics Choice; BAFTA",
+      "tier": "lock"
+    },
+    {
+      "order": 4,
+      "category": "Actress in a Supporting Role",
+      "nominees": [
+        "Elle Fanning - Sentimental Value",
+        "Inga Ibsdotter Lilleaas - Sentimental Value",
+        "Amy Madigan - Weapons",
+        "Wunmi Mosaku - Sinners",
+        "Teyana Taylor - One Battle after Another"
+      ],
+      "mainstream_pick": "Amy Madigan - Weapons",
+      "mainstream_pct": 39,
+      "combined_pick": "Amy Madigan - Weapons",
+      "combined_pct": 43,
+      "market_leader": "Amy Madigan - 52%",
+      "challenger": "Teyana Taylor - One Battle after Another",
+      "why": "This is the messiest major-category call. Amy Madigan won Critics Choice and the Actor Awards, Teyana Taylor won the Globe and gets Vanity Fair's nod, and Wunmi Mosaku took BAFTA. I still lean Amy because the late industry prizes matter most, but this is absolutely the ballot's biggest sweat.",
+      "source_support": "Vanity Fair; New Yorker; Critics Choice; Actor Awards; Golden Globes; BAFTA; Polymarket",
+      "tier": "toss-up"
+    },
+    {
+      "order": 5,
+      "category": "Animated Feature Film",
+      "nominees": [
+        "Arco",
+        "Elio",
+        "KPop Demon Hunters",
+        "Little Amélie or the Character of Rain",
+        "Zootopia 2"
+      ],
+      "mainstream_pick": "KPop Demon Hunters",
+      "mainstream_pct": 93,
+      "combined_pick": "KPop Demon Hunters",
+      "combined_pct": 93,
+      "market_leader": "KPop Demon Hunters - 93%",
+      "challenger": "Zootopia 2",
+      "why": "KPop Demon Hunters has the strongest animation-season profile by far: Annie sweep, Globe win, and a Vanity Fair prediction. The market agrees it's basically the field's animation lock.",
+      "source_support": "Vanity Fair; Annie Awards; Golden Globes; Polymarket",
+      "tier": "lock"
+    },
+    {
+      "order": 6,
+      "category": "Animated Short Film",
+      "nominees": [
+        "Butterfly",
+        "Forevergreen",
+        "The Girl Who Cried Pearls",
+        "Retirement Plan",
+        "The Three Sisters"
+      ],
+      "mainstream_pick": "Butterfly",
+      "mainstream_pct": 49,
+      "combined_pick": "Butterfly",
+      "combined_pct": 50,
+      "market_leader": "Butterfly - 52%",
+      "challenger": "The Girl Who Cried Pearls",
+      "why": "Vanity Fair and Polymarket both edge toward Butterfly, but short categories are chaotic by nature, so I would not overstate confidence here.",
+      "source_support": "Vanity Fair; Polymarket",
+      "tier": "toss-up"
+    },
+    {
+      "order": 7,
+      "category": "Casting",
+      "nominees": [
+        "Hamnet",
+        "Marty Supreme",
+        "One Battle after Another",
+        "The Secret Agent",
+        "Sinners"
+      ],
+      "mainstream_pick": "Sinners",
+      "mainstream_pct": 76,
+      "combined_pick": "Sinners",
+      "combined_pct": 77,
+      "market_leader": "Sinners - 79%",
+      "challenger": "One Battle after Another",
+      "why": "Since this is the first year for casting, I leaned heavily on the Artios result and the overall broad-ensemble read. Sinners fits both and gets Vanity Fair's vote.",
+      "source_support": "Vanity Fair; Artios; Polymarket",
+      "tier": "strong"
+    },
+    {
+      "order": 8,
+      "category": "Cinematography",
+      "nominees": [
+        "Frankenstein",
+        "Marty Supreme",
+        "One Battle after Another",
+        "Sinners",
+        "Train Dreams"
+      ],
+      "mainstream_pick": "One Battle after Another",
+      "mainstream_pct": 68,
+      "combined_pick": "One Battle after Another",
+      "combined_pct": 70,
+      "market_leader": "One Battle after Another - 74%",
+      "challenger": "Sinners",
+      "why": "Vanity Fair flagged this as neck-and-neck, but the late precursors broke toward One Battle after Another: BAFTA cinematography and ASC both went there. That's enough to override earlier Sinners momentum.",
+      "source_support": "Vanity Fair; BAFTA; ASC; Polymarket",
+      "tier": "lean"
+    },
+    {
+      "order": 9,
+      "category": "Best Picture",
+      "nominees": [
+        "Bugonia",
+        "F1",
+        "Frankenstein",
+        "Hamnet",
+        "Marty Supreme",
+        "One Battle after Another",
+        "The Secret Agent",
+        "Sentimental Value",
+        "Sinners",
+        "Train Dreams"
+      ],
+      "mainstream_pick": "One Battle after Another",
+      "mainstream_pct": 63,
+      "combined_pick": "One Battle after Another",
+      "combined_pct": 67,
+      "market_leader": "One Battle after Another - 76%",
+      "challenger": "Sinners",
+      "why": "This is the night's central fight. One Battle after Another has PGA, DGA, BAFTA Best Film, and both Vanity Fair and The New Yorker leaning its way. Sinners has the stronger passion narrative and the Actor Awards ensemble win, so I would keep it as the only serious upset path.",
+      "source_support": "Vanity Fair; New Yorker; Variety snippet; Deadline snippet; PGA; DGA; BAFTA; Actor Awards; Polymarket",
+      "tier": "lean"
+    },
+    {
+      "order": 10,
+      "category": "Costume Design",
+      "nominees": [
+        "Avatar: Fire and Ash",
+        "Frankenstein",
+        "Hamnet",
+        "Marty Supreme",
+        "Sinners"
+      ],
+      "mainstream_pick": "Frankenstein",
+      "mainstream_pct": 89,
+      "combined_pick": "Frankenstein",
+      "combined_pct": 90,
+      "market_leader": "Frankenstein - 91%",
+      "challenger": "Sinners",
+      "why": "Frankenstein dominated the major costume indicators and gets Vanity Fair's pick as well. This is one of the sturdier craft calls on the board.",
+      "source_support": "Vanity Fair; BAFTA; Polymarket",
+      "tier": "lock"
+    },
+    {
+      "order": 11,
+      "category": "Directing",
+      "nominees": [
+        "Hamnet - Chloé Zhao",
+        "Marty Supreme - Josh Safdie",
+        "One Battle after Another - Paul Thomas Anderson",
+        "Sentimental Value - Joachim Trier",
+        "Sinners - Ryan Coogler"
+      ],
+      "mainstream_pick": "One Battle after Another - Paul Thomas Anderson",
+      "mainstream_pct": 91,
+      "combined_pick": "One Battle after Another - Paul Thomas Anderson",
+      "combined_pct": 92,
+      "market_leader": "Paul Thomas Anderson - 94%",
+      "challenger": "Ryan Coogler - Sinners",
+      "why": "This looks close to done. Anderson won DGA and BAFTA, and both Vanity Fair and The New Yorker say this is where he finally gets his directing Oscar.",
+      "source_support": "Vanity Fair; New Yorker; Variety snippet; Deadline snippet; DGA; BAFTA; Polymarket",
+      "tier": "lock"
+    },
+    {
+      "order": 12,
+      "category": "Documentary Feature Film",
+      "nominees": [
+        "The Alabama Solution",
+        "Come See Me in the Good Light",
+        "Cutting through Rocks",
+        "Mr. Nobody against Putin",
+        "The Perfect Neighbor"
+      ],
+      "mainstream_pick": "The Perfect Neighbor",
+      "mainstream_pct": 61,
+      "combined_pick": "The Perfect Neighbor",
+      "combined_pct": 62,
+      "market_leader": "The Perfect Neighbor - 65%",
+      "challenger": "Mr. Nobody against Putin",
+      "why": "Vanity Fair's call lines up with the strongest late-season documentary resume: Critics Choice plus Independent Spirit. That makes The Perfect Neighbor the safest ballot answer even if docs can spring surprises.",
+      "source_support": "Vanity Fair; Critics Choice; Independent Spirit; Polymarket",
+      "tier": "lean"
+    },
+    {
+      "order": 13,
+      "category": "Documentary Short Film",
+      "nominees": [
+        "All the Empty Rooms",
+        "Armed Only with a Camera: The Life and Death of Brent Renaud",
+        "Children No More: 'Were and Are Gone'",
+        "The Devil Is Busy",
+        "Perfectly a Strangeness"
+      ],
+      "mainstream_pick": "All the Empty Rooms",
+      "mainstream_pct": 62,
+      "combined_pick": "All the Empty Rooms",
+      "combined_pct": 63,
+      "market_leader": "All the Empty Rooms - 66%",
+      "challenger": "Armed Only with a Camera: The Life and Death of Brent Renaud",
+      "why": "Vanity Fair and Polymarket both put All the Empty Rooms in front. That's enough for a pool pick, but I still treat any short as medium-risk.",
+      "source_support": "Vanity Fair; Polymarket",
+      "tier": "lean"
+    },
+    {
+      "order": 14,
+      "category": "Film Editing",
+      "nominees": [
+        "F1",
+        "Marty Supreme",
+        "One Battle after Another",
+        "Sentimental Value",
+        "Sinners"
+      ],
+      "mainstream_pick": "One Battle after Another",
+      "mainstream_pct": 74,
+      "combined_pick": "One Battle after Another",
+      "combined_pct": 75,
+      "market_leader": "One Battle after Another - 77%",
+      "challenger": "F1",
+      "why": "Editing is part of the One Battle after Another best-picture/directing package. BAFTA went there, and the market has widened the gap enough that I'd follow it.",
+      "source_support": "Vanity Fair; BAFTA; ACE context; Polymarket",
+      "tier": "strong"
+    },
+    {
+      "order": 15,
+      "category": "International Feature Film",
+      "nominees": [
+        "The Secret Agent",
+        "It Was Just an Accident",
+        "Sentimental Value",
+        "Sirât",
+        "The Voice of Hind Rajab"
+      ],
+      "mainstream_pick": "Sentimental Value",
+      "mainstream_pct": 54,
+      "combined_pick": "Sentimental Value",
+      "combined_pct": 56,
+      "market_leader": "Sentimental Value - 62%",
+      "challenger": "The Secret Agent",
+      "why": "This is a legit two-way split. Vanity Fair and BAFTA lean Sentimental Value, while The New Yorker and the Globe point to The Secret Agent. I give Sentimental Value a slight edge because the BAFTA plus market combo feels more Oscar-adjacent at the finish line.",
+      "source_support": "Vanity Fair; New Yorker; BAFTA; Golden Globes; LA Times snippet; Polymarket",
+      "tier": "toss-up"
+    },
+    {
+      "order": 16,
+      "category": "Live Action Short Film",
+      "nominees": [
+        "Butcher's Stain",
+        "A Friend of Dorothy",
+        "Jane Austen's Period Drama",
+        "The Singers",
+        "Two People Exchanging Saliva"
+      ],
+      "mainstream_pick": "Two People Exchanging Saliva",
+      "mainstream_pct": 44,
+      "combined_pick": "Two People Exchanging Saliva",
+      "combined_pct": 45,
+      "market_leader": "Two People Exchanging Saliva - 46%",
+      "challenger": "A Friend of Dorothy",
+      "why": "Vanity Fair and Polymarket both shade this toward Two People Exchanging Saliva. That is enough for a pool answer, but the live-action short field is still close.",
+      "source_support": "Vanity Fair; Polymarket",
+      "tier": "toss-up"
+    },
+    {
+      "order": 17,
+      "category": "Makeup and Hairstyling",
+      "nominees": [
+        "Frankenstein",
+        "Kokuho",
+        "Sinners",
+        "The Smashing Machine",
+        "The Ugly Stepsister"
+      ],
+      "mainstream_pick": "Frankenstein",
+      "mainstream_pct": 90,
+      "combined_pick": "Frankenstein",
+      "combined_pct": 90,
+      "market_leader": "Frankenstein - 90%",
+      "challenger": "Sinners",
+      "why": "Frankenstein has the classic makeup branch profile and cleaned up the major precursor that matters most here. Easy checkbox.",
+      "source_support": "Vanity Fair; BAFTA; Polymarket",
+      "tier": "lock"
+    },
+    {
+      "order": 18,
+      "category": "Original Score",
+      "nominees": [
+        "Bugonia",
+        "Frankenstein",
+        "Hamnet",
+        "One Battle after Another",
+        "Sinners"
+      ],
+      "mainstream_pick": "Sinners",
+      "mainstream_pct": 93,
+      "combined_pick": "Sinners",
+      "combined_pct": 93,
+      "market_leader": "Sinners - 94%",
+      "challenger": "One Battle after Another",
+      "why": "Score is one of the cleanest Sinners calls on the board: Globe, Critics Choice, BAFTA, Vanity Fair, and Polymarket all line up here.",
+      "source_support": "Vanity Fair; Golden Globes; Critics Choice; BAFTA; Polymarket",
+      "tier": "lock"
+    },
+    {
+      "order": 19,
+      "category": "Original Song",
+      "nominees": [
+        "'Dear Me' - Diane Warren: Relentless",
+        "'Golden' - KPop Demon Hunters",
+        "'I Lied To You' - Sinners",
+        "'Sweet Dreams Of Joy' - Viva Verdi!",
+        "'Train Dreams' - Train Dreams"
+      ],
+      "mainstream_pick": "'Golden' - KPop Demon Hunters",
+      "mainstream_pct": 89,
+      "combined_pick": "'Golden' - KPop Demon Hunters",
+      "combined_pct": 88,
+      "market_leader": "'Golden' - 87%",
+      "challenger": "'I Lied To You' - Sinners",
+      "why": "Golden already won the Globe, gets the Vanity Fair pick, and Polymarket keeps it well ahead. I would not get cute here.",
+      "source_support": "Vanity Fair; Golden Globes; Polymarket",
+      "tier": "lock"
+    },
+    {
+      "order": 20,
+      "category": "Production Design",
+      "nominees": [
+        "Frankenstein",
+        "Hamnet",
+        "Marty Supreme",
+        "One Battle after Another",
+        "Sinners"
+      ],
+      "mainstream_pick": "Frankenstein",
+      "mainstream_pct": 88,
+      "combined_pick": "Frankenstein",
+      "combined_pct": 89,
+      "market_leader": "Frankenstein - 90%",
+      "challenger": "Sinners",
+      "why": "This is another Frankenstein tech race. BAFTA and Vanity Fair both point there, and even Deadline's indexed snippet did too.",
+      "source_support": "Vanity Fair; Deadline snippet; BAFTA; Polymarket",
+      "tier": "lock"
+    },
+    {
+      "order": 21,
+      "category": "Sound",
+      "nominees": [
+        "F1",
+        "Frankenstein",
+        "One Battle after Another",
+        "Sinners",
+        "Sirât"
+      ],
+      "mainstream_pick": "F1",
+      "mainstream_pct": 75,
+      "combined_pick": "F1",
+      "combined_pct": 76,
+      "market_leader": "F1 - 79%",
+      "challenger": "Sinners",
+      "why": "F1 has the best sound-specific precursor on the board after taking the CAS top prize, and Vanity Fair also calls it. This feels sturdier than the picture titles in the category.",
+      "source_support": "Vanity Fair; CAS; MPSE context; Polymarket",
+      "tier": "strong"
+    },
+    {
+      "order": 22,
+      "category": "Visual Effects",
+      "nominees": [
+        "Avatar: Fire and Ash",
+        "F1",
+        "Jurassic World Rebirth",
+        "The Lost Bus",
+        "Sinners"
+      ],
+      "mainstream_pick": "Avatar: Fire and Ash",
+      "mainstream_pct": 91,
+      "combined_pick": "Avatar: Fire and Ash",
+      "combined_pct": 92,
+      "market_leader": "Avatar: Fire and Ash - 93%",
+      "challenger": "F1 / Sinners",
+      "why": "Visual Effects is doing what this category usually does: follow the biggest technical branch signal. Avatar won the VES prize and gets Vanity Fair's vote too.",
+      "source_support": "Vanity Fair; VES; Polymarket",
+      "tier": "lock"
+    },
+    {
+      "order": 23,
+      "category": "Adapted Screenplay",
+      "nominees": [
+        "Bugonia",
+        "Frankenstein",
+        "Hamnet",
+        "One Battle after Another",
+        "Train Dreams"
+      ],
+      "mainstream_pick": "One Battle after Another",
+      "mainstream_pct": 94,
+      "combined_pick": "One Battle after Another",
+      "combined_pct": 95,
+      "market_leader": "One Battle after Another - 96%",
+      "challenger": "Hamnet",
+      "why": "This race is basically the safest One Battle after Another checkmark: Critics Choice, WGA, BAFTA, Vanity Fair, and The New Yorker all have it.",
+      "source_support": "Vanity Fair; New Yorker; Critics Choice; WGA; BAFTA; Polymarket",
+      "tier": "lock"
+    },
+    {
+      "order": 24,
+      "category": "Original Screenplay",
+      "nominees": [
+        "Blue Moon",
+        "It Was Just an Accident",
+        "Marty Supreme",
+        "Sentimental Value",
+        "Sinners"
+      ],
+      "mainstream_pick": "Sinners",
+      "mainstream_pct": 94,
+      "combined_pick": "Sinners",
+      "combined_pct": 95,
+      "market_leader": "Sinners - 96%",
+      "challenger": "Sentimental Value",
+      "why": "Original Screenplay has become the cleanest Sinners play: WGA, BAFTA, Vanity Fair, The New Yorker, and the market all align.",
+      "source_support": "Vanity Fair; New Yorker; Critics Choice; WGA; BAFTA; Polymarket",
+      "tier": "lock"
+    }
+  ],
+  "extra_credit": [
+    {
+      "category": "Length of Show (Tiebreaker)",
+      "pick": "3 hours, 32 minutes",
+      "note": "ABC affiliates are scheduling the ceremony to hand off around 10:32 p.m. ET, which makes 3:32 my best tiebreaker guess. The official ceremony start is 7 p.m. ET / 4 p.m. PT."
+    },
+    {
+      "category": "Worst Dressed Attendee (Extra Credit)",
+      "pick": "Timothée Chalamet",
+      "note": "Pure fashion-risk dart throw, not data. He is a likely attendee and one of the nominees most likely to take a big menswear swing."
+    }
+  ]
+}
