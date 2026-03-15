@@ -213,6 +213,56 @@
     }
     .nominee.checked span { font-weight: bold; }
 
+    /* Winner & result indicators on ballot */
+    .nominee.winner .checkbox {
+      background: #d4af37;
+      border-color: #d4af37;
+    }
+    .nominee.winner .checkbox::after {
+      content: "\1F3C6";
+      font-size: 10px;
+    }
+    .nominee.winner span {
+      font-weight: bold;
+      color: #7c6200;
+    }
+    .nominee.checked.winner span::after {
+      content: " \2714";
+      color: #16a34a;
+      font-weight: 800;
+    }
+    .nominee.checked.wrong span {
+      text-decoration: line-through;
+      opacity: 0.5;
+    }
+
+    /* Result badge on analysis cards */
+    .result-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+    .result-badge.correct {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .result-badge.incorrect {
+      background: rgba(239, 68, 68, 0.15);
+      color: #fca5a5;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+    .actual-winner {
+      font-size: 0.9rem;
+      color: #fcd34d;
+      margin-bottom: 12px;
+    }
+
     .tiebreaker-box {
       grid-column: 1 / -1;
       border-top: 2px solid #ccc;
@@ -374,7 +424,7 @@
     /* ----- PRINT STYLES ----- */
     @media print {
       body { background: #fff; color: #000; }
-      .hero, .tabs, .ballot-actions, #analysis-section { display: none !important; }
+      .hero, .tabs, .ballot-actions, #analysis-section, #scoreboard { display: none !important; }
       .container { padding: 0; margin: 0; max-width: 100%; }
       .ballot-grid {
         background: #fff;
@@ -404,9 +454,18 @@
     <h1>2026 Oscar Pool</h1>
     <p>Your 2026 Academy Awards prediction guide with Oscar winner picks, Best Picture analysis, acting category forecasts, and a printable Oscar ballot cheat sheet for pool strategy before the March 15 telecast.</p>
     
+    <div id="scoreboard" style="display:none; margin-top:20px;">
+      <div style="display:inline-flex; gap:24px; background:var(--surface); padding:12px 28px; border-radius:12px; border:1px solid var(--surface-border);">
+        <div style="text-align:center;"><span style="font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;">Correct</span><br><span id="score-correct" style="font-size:1.5rem;font-weight:800;color:#34d399;">0</span></div>
+        <div style="text-align:center;"><span style="font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;">Wrong</span><br><span id="score-wrong" style="font-size:1.5rem;font-weight:800;color:#fca5a5;">0</span></div>
+        <div style="text-align:center;"><span style="font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;">Pending</span><br><span id="score-pending" style="font-size:1.5rem;font-weight:800;color:var(--text-muted);">0</span></div>
+        <div style="text-align:center;"><span style="font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;">Accuracy</span><br><span id="score-pct" style="font-size:1.5rem;font-weight:800;color:var(--gold);">--</span></div>
+      </div>
+    </div>
+
     <div class="tabs">
-      <button class="tab-btn active" data-tab="ballot" onclick="switchTab('ballot', event)">📋 Ballot Picks</button>
-      <button class="tab-btn" data-tab="analysis" onclick="switchTab('analysis', event)">📊 Category Analysis & Picks</button>
+      <button class="tab-btn active" data-tab="ballot" onclick="switchTab('ballot', event)">Ballot Picks</button>
+      <button class="tab-btn" data-tab="analysis" onclick="switchTab('analysis', event)">Category Analysis & Picks</button>
     </div>
   </header>
 
@@ -467,9 +526,10 @@
         cat: "Actor in a Leading Role", pick: "Michael B. Jordan - Sinners", 
         base_pct: 56, combined_pct: 55, market: "Michael B. Jordan - 53%", 
         challenger: "Timothée Chalamet - Marty Supreme", tier: "toss-up", 
-        text: "Variety's top-line forecast and Vanity Fair both land on Michael B. Jordan, while Deadline's indexed snippet tied the race to his late-run wins. Timothée Chalamet is still live because he took both the Globe and Critics Choice.", 
+        text: "Variety's top-line forecast and Vanity Fair both land on Michael B. Jordan, while Deadline's indexed snippet tied the race to his late-run wins. Timothée Chalamet is still live because he took both the Globe and Critics Choice.",
         sources:["Vanity Fair", "Variety", "Deadline", "Actor Awards", "Golden Globes", "Critics Choice"],
-        noms:["Timothée Chalamet, Marty Supreme", "Leonardo DiCaprio, One Battle after Another", "Ethan Hawke, Blue Moon", "Michael B. Jordan, Sinners", "Wagner Moura, The Secret Agent"] 
+        noms:["Timothée Chalamet, Marty Supreme", "Leonardo DiCaprio, One Battle after Another", "Ethan Hawke, Blue Moon", "Michael B. Jordan, Sinners", "Wagner Moura, The Secret Agent"],
+        winner: null
       },
       { 
         cat: "Actor in a Supporting Role", pick: "Sean Penn - One Battle after Another", 
@@ -477,7 +537,8 @@
         challenger: "Stellan Skarsgård / Delroy Lindo", tier: "lean", 
         text: "Sean Penn is the cleanest consensus across the mainstream prediction pieces I could verify, and BAFTA also went his way. Delroy Lindo is the upside upset if Sinners starts running hot all night.", 
         sources:["Vanity Fair", "New Yorker", "Deadline", "BAFTA", "Polymarket"],
-        noms:["Benicio Del Toro, One Battle after Another", "Jacob Elordi, Frankenstein", "Delroy Lindo, Sinners", "Sean Penn, One Battle after Another", "Stellan Skarsgård, Sentimental Value"] 
+        noms:["Benicio Del Toro, One Battle after Another", "Jacob Elordi, Frankenstein", "Delroy Lindo, Sinners", "Sean Penn, One Battle after Another", "Stellan Skarsgård, Sentimental Value"],
+        winner: null
       },
       { 
         cat: "Actress in a Leading Role", pick: "Jessie Buckley - Hamnet", 
@@ -485,7 +546,8 @@
         challenger: "Rose Byrne - If I Had Legs I'd Kick You", tier: "lock", 
         text: "This is the closest thing to a free square. Vanity Fair and The New Yorker both call it the easiest acting race, and the New York Times Daily transcript frames Buckley as the consensus winner. She also has Globe, Critics Choice, and BAFTA support.", 
         sources:["Vanity Fair", "New Yorker", "NYT The Daily", "Golden Globes", "Critics Choice", "BAFTA"],
-        noms:["Jessie Buckley, Hamnet", "Rose Byrne, If I Had Legs I'd Kick You", "Kate Hudson, Song Sung Blue", "Renate Reinsve, Sentimental Value", "Emma Stone, Bugonia"] 
+        noms:["Jessie Buckley, Hamnet", "Rose Byrne, If I Had Legs I'd Kick You", "Kate Hudson, Song Sung Blue", "Renate Reinsve, Sentimental Value", "Emma Stone, Bugonia"],
+        winner: null
       },
       { 
         cat: "Actress in a Supporting Role", pick: "Amy Madigan - Weapons", 
@@ -493,7 +555,8 @@
         challenger: "Teyana Taylor - One Battle after Another", tier: "toss-up", 
         text: "This is the messiest major-category call. Amy Madigan won Critics Choice and the Actor Awards, Teyana Taylor won the Globe and gets Vanity Fair's nod, and Wunmi Mosaku took BAFTA. I still lean Amy because the late industry prizes matter most, but this is absolutely the ballot's biggest sweat.", 
         sources:["Vanity Fair", "New Yorker", "Critics Choice", "Actor Awards", "Golden Globes", "BAFTA", "Polymarket"],
-        noms:["Elle Fanning, Sentimental Value", "Inga Ibsdotter Lilleaas, Sentimental Value", "Amy Madigan, Weapons", "Wunmi Mosaku, Sinners", "Teyana Taylor, One Battle after Another"] 
+        noms:["Elle Fanning, Sentimental Value", "Inga Ibsdotter Lilleaas, Sentimental Value", "Amy Madigan, Weapons", "Wunmi Mosaku, Sinners", "Teyana Taylor, One Battle after Another"],
+        winner: "Amy Madigan"
       },
       { 
         cat: "Animated Feature Film", pick: "KPop Demon Hunters", 
@@ -501,7 +564,8 @@
         challenger: "Zootopia 2", tier: "lock", 
         text: "KPop Demon Hunters has the strongest animation-season profile by far: Annie sweep, Globe win, and a Vanity Fair prediction. The market agrees it's basically the field's animation lock.", 
         sources: ["Vanity Fair", "Annie Awards", "Golden Globes", "Polymarket"],
-        noms:["Arco", "Elio", "KPop Demon Hunters", "Little Amélie or the Character of Rain", "Zootopia 2"] 
+        noms:["Arco", "Elio", "KPop Demon Hunters", "Little Amélie or the Character of Rain", "Zootopia 2"],
+        winner: "KPop Demon Hunters"
       },
       { 
         cat: "Animated Short Film", pick: "Butterfly", 
@@ -509,7 +573,8 @@
         challenger: "The Girl Who Cried Pearls", tier: "toss-up", 
         text: "Vanity Fair and Polymarket both edge toward Butterfly, but short categories are chaotic by nature, so I would not overstate confidence here.", 
         sources:["Vanity Fair", "Polymarket"],
-        noms:["Butterfly", "Forevergreen", "The Girl Who Cried Pearls", "Retirement Plan", "The Three Sisters"] 
+        noms:["Butterfly", "Forevergreen", "The Girl Who Cried Pearls", "Retirement Plan", "The Three Sisters"],
+        winner: null
       },
       { 
         cat: "Casting", pick: "Sinners", 
@@ -517,15 +582,17 @@
         challenger: "One Battle after Another", tier: "strong", 
         text: "Since this is the first year for casting, I leaned heavily on the Artios result and the overall broad-ensemble read. Sinners fits both and gets Vanity Fair's vote.", 
         sources: ["Vanity Fair", "Artios", "Polymarket"],
-        noms:["Hamnet", "Marty Supreme", "One Battle after Another", "The Secret Agent", "Sinners"] 
+        noms:["Hamnet", "Marty Supreme", "One Battle after Another", "The Secret Agent", "Sinners"],
+        winner: null
       },
-      { 
+      {
         cat: "Cinematography", pick: "One Battle after Another", 
         base_pct: 68, combined_pct: 70, market: "One Battle after Another - 74%", 
         challenger: "Sinners", tier: "lean", 
         text: "Vanity Fair flagged this as neck-and-neck, but the late precursors broke toward One Battle after Another: BAFTA cinematography and ASC both went there. That's enough to override earlier Sinners momentum.", 
         sources:["Vanity Fair", "BAFTA", "ASC", "Polymarket"],
-        noms:["Frankenstein", "Marty Supreme", "One Battle after Another", "Sinners", "Train Dreams"] 
+        noms:["Frankenstein", "Marty Supreme", "One Battle after Another", "Sinners", "Train Dreams"],
+        winner: null
       },
       { 
         cat: "Best Picture", pick: "One Battle after Another", 
@@ -533,7 +600,8 @@
         challenger: "Sinners", tier: "lean", 
         text: "This is the night's central fight. One Battle after Another has PGA, DGA, BAFTA Best Film, and both Vanity Fair and The New Yorker leaning its way. Sinners has the stronger passion narrative and the Actor Awards ensemble win, so I would keep it as the only serious upset path.", 
         sources:["Vanity Fair", "New Yorker", "Variety", "Deadline", "PGA", "DGA", "BAFTA", "Actor Awards", "Polymarket"],
-        noms:["Bugonia", "F1", "Frankenstein", "Hamnet", "Marty Supreme", "One Battle after Another", "The Secret Agent", "Sentimental Value", "Sinners", "Train Dreams"] 
+        noms:["Bugonia", "F1", "Frankenstein", "Hamnet", "Marty Supreme", "One Battle after Another", "The Secret Agent", "Sentimental Value", "Sinners", "Train Dreams"],
+        winner: null
       },
       { 
         cat: "Costume Design", pick: "Frankenstein", 
@@ -541,23 +609,26 @@
         challenger: "Sinners", tier: "lock", 
         text: "Frankenstein dominated the major costume indicators and gets Vanity Fair's pick as well. This is one of the sturdier craft calls on the board.", 
         sources: ["Vanity Fair", "BAFTA", "Polymarket"],
-        noms:["Avatar: Fire and Ash", "Frankenstein", "Hamnet", "Marty Supreme", "Sinners"] 
+        noms:["Avatar: Fire and Ash", "Frankenstein", "Hamnet", "Marty Supreme", "Sinners"],
+        winner: null
       },
-      { 
+      {
         cat: "Directing", pick: "One Battle after Another", 
         base_pct: 91, combined_pct: 92, market: "One Battle after Another - 94%", 
         challenger: "Sinners", tier: "lock", 
         text: "This looks close to done. Anderson won DGA and BAFTA, and both Vanity Fair and The New Yorker say this is where he finally gets his directing Oscar.", 
         sources:["Vanity Fair", "New Yorker", "Variety", "Deadline", "DGA", "BAFTA", "Polymarket"],
-        noms:["Hamnet", "Marty Supreme", "One Battle after Another", "Sentimental Value", "Sinners"] 
+        noms:["Hamnet", "Marty Supreme", "One Battle after Another", "Sentimental Value", "Sinners"],
+        winner: null
       },
-      { 
+      {
         cat: "Documentary Feature Film", pick: "The Perfect Neighbor", 
         base_pct: 61, combined_pct: 62, market: "The Perfect Neighbor - 65%", 
         challenger: "Mr. Nobody against Putin", tier: "lean", 
         text: "Vanity Fair's call lines up with the strongest late-season documentary resume: Critics Choice plus Independent Spirit. That makes The Perfect Neighbor the safest ballot answer even if docs can spring surprises.", 
         sources: ["Vanity Fair", "Critics Choice", "Independent Spirit", "Polymarket"],
-        noms:["The Alabama Solution", "Come See Me in the Good Light", "Cutting through Rocks", "Mr. Nobody against Putin", "The Perfect Neighbor"] 
+        noms:["The Alabama Solution", "Come See Me in the Good Light", "Cutting through Rocks", "Mr. Nobody against Putin", "The Perfect Neighbor"],
+        winner: null
       },
       { 
         cat: "Documentary Short Film", pick: "All the Empty Rooms", 
@@ -565,7 +636,8 @@
         challenger: "Armed Only with a Camera", tier: "lean", 
         text: "Vanity Fair and Polymarket both put All the Empty Rooms in front. That's enough for a pool pick, but I still treat any short as medium-risk.", 
         sources: ["Vanity Fair", "Polymarket"],
-        noms:["All the Empty Rooms", "Armed Only with a Camera...", "Children No More: 'Were and Are Gone'", "The Devil Is Busy", "Perfectly a Strangeness"] 
+        noms:["All the Empty Rooms", "Armed Only with a Camera...", "Children No More: 'Were and Are Gone'", "The Devil Is Busy", "Perfectly a Strangeness"],
+        winner: null
       },
       { 
         cat: "Film Editing", pick: "One Battle after Another", 
@@ -573,15 +645,17 @@
         challenger: "F1", tier: "strong", 
         text: "Editing is part of the One Battle after Another best-picture/directing package. BAFTA went there, and the market has widened the gap enough that I'd follow it.", 
         sources: ["Vanity Fair", "BAFTA", "ACE context", "Polymarket"],
-        noms:["F1", "Marty Supreme", "One Battle after Another", "Sentimental Value", "Sinners"] 
+        noms:["F1", "Marty Supreme", "One Battle after Another", "Sentimental Value", "Sinners"],
+        winner: null
       },
-      { 
+      {
         cat: "International Feature Film", pick: "Sentimental Value", 
         base_pct: 54, combined_pct: 56, market: "Sentimental Value - 62%", 
         challenger: "The Secret Agent", tier: "toss-up", 
         text: "This is a legit two-way split. Vanity Fair and BAFTA lean Sentimental Value, while The New Yorker and the Globe point to The Secret Agent. I give Sentimental Value a slight edge because the BAFTA plus market combo feels more Oscar-adjacent at the finish line.", 
         sources:["Vanity Fair", "New Yorker", "BAFTA", "Golden Globes", "LA Times", "Polymarket"],
-        noms:["The Secret Agent", "It Was Just an Accident", "Sentimental Value", "Sirât", "The Voice of Hind Rajab"] 
+        noms:["The Secret Agent", "It Was Just an Accident", "Sentimental Value", "Sirât", "The Voice of Hind Rajab"],
+        winner: null
       },
       { 
         cat: "Live Action Short Film", pick: "Two People Exchanging Saliva", 
@@ -589,7 +663,8 @@
         challenger: "A Friend of Dorothy", tier: "toss-up", 
         text: "Vanity Fair and Polymarket both shade this toward Two People Exchanging Saliva. That is enough for a pool answer, but the live-action short field is still close.", 
         sources:["Vanity Fair", "Polymarket"],
-        noms:["Butcher's Stain", "A Friend of Dorothy", "Jane Austen's Period Drama", "The Singers", "Two People Exchanging Saliva"] 
+        noms:["Butcher's Stain", "A Friend of Dorothy", "Jane Austen's Period Drama", "The Singers", "Two People Exchanging Saliva"],
+        winner: null
       },
       { 
         cat: "Makeup and Hairstyling", pick: "Frankenstein", 
@@ -597,7 +672,8 @@
         challenger: "Sinners", tier: "lock", 
         text: "Frankenstein has the classic makeup branch profile and cleaned up the major precursor that matters most here. Easy checkbox.", 
         sources:["Vanity Fair", "BAFTA", "Polymarket"],
-        noms:["Frankenstein", "Kokuho", "Sinners", "The Smashing Machine", "The Ugly Stepsister"] 
+        noms:["Frankenstein", "Kokuho", "Sinners", "The Smashing Machine", "The Ugly Stepsister"],
+        winner: null
       },
       { 
         cat: "Original Score", pick: "Sinners", 
@@ -605,15 +681,17 @@
         challenger: "One Battle after Another", tier: "lock", 
         text: "Score is one of the cleanest Sinners calls on the board: Globe, Critics Choice, BAFTA, Vanity Fair, and Polymarket all line up here.", 
         sources:["Vanity Fair", "Golden Globes", "Critics Choice", "BAFTA", "Polymarket"],
-        noms:["Bugonia", "Frankenstein", "Hamnet", "One Battle after Another", "Sinners"] 
+        noms:["Bugonia", "Frankenstein", "Hamnet", "One Battle after Another", "Sinners"],
+        winner: null
       },
-      { 
+      {
         cat: "Original Song", pick: "Golden - KPop Demon Hunters", 
         base_pct: 89, combined_pct: 88, market: "Golden - 87%", 
         challenger: "I Lied To You - Sinners", tier: "lock", 
         text: "Golden already won the Globe, gets the Vanity Fair pick, and Polymarket keeps it well ahead. I would not get cute here.", 
         sources:["Vanity Fair", "Golden Globes", "Polymarket"],
-        noms:["“Dear Me” from Diane Warren", "“Golden” from KPop Demon Hunters", "“I Lied To You” from Sinners", "“Sweet Dreams Of Joy” from Viva Verdi!", "“Train Dreams” from Train Dreams"] 
+        noms:['"Dear Me" from Diane Warren', '"Golden" from KPop Demon Hunters', '"I Lied To You" from Sinners', '"Sweet Dreams Of Joy" from Viva Verdi!', '"Train Dreams" from Train Dreams'],
+        winner: null
       },
       { 
         cat: "Production Design", pick: "Frankenstein", 
@@ -621,15 +699,17 @@
         challenger: "Sinners", tier: "lock", 
         text: "This is another Frankenstein tech race. BAFTA and Vanity Fair both point there, and even Deadline's indexed snippet did too.", 
         sources:["Vanity Fair", "Deadline", "BAFTA", "Polymarket"],
-        noms:["Frankenstein", "Hamnet", "Marty Supreme", "One Battle after Another", "Sinners"] 
+        noms:["Frankenstein", "Hamnet", "Marty Supreme", "One Battle after Another", "Sinners"],
+        winner: null
       },
-      { 
+      {
         cat: "Sound", pick: "F1", 
         base_pct: 75, combined_pct: 76, market: "F1 - 79%", 
         challenger: "Sinners", tier: "strong", 
         text: "F1 has the best sound-specific precursor on the board after taking the CAS top prize, and Vanity Fair also calls it. This feels sturdier than the picture titles in the category.", 
         sources:["Vanity Fair", "CAS", "MPSE context", "Polymarket"],
-        noms:["F1", "Frankenstein", "One Battle after Another", "Sinners", "Sirât"] 
+        noms:["F1", "Frankenstein", "One Battle after Another", "Sinners", "Sirât"],
+        winner: null
       },
       { 
         cat: "Visual Effects", pick: "Avatar: Fire and Ash", 
@@ -637,7 +717,8 @@
         challenger: "F1 / Sinners", tier: "lock", 
         text: "Visual Effects is doing what this category usually does: follow the biggest technical branch signal. Avatar won the VES prize and gets Vanity Fair's vote too.", 
         sources: ["Vanity Fair", "VES", "Polymarket"],
-        noms:["Avatar: Fire and Ash", "F1", "Jurassic World Rebirth", "The Lost Bus", "Sinners"] 
+        noms:["Avatar: Fire and Ash", "F1", "Jurassic World Rebirth", "The Lost Bus", "Sinners"],
+        winner: null
       },
       { 
         cat: "Adapted Screenplay", pick: "One Battle after Another", 
@@ -645,7 +726,8 @@
         challenger: "Hamnet", tier: "lock", 
         text: "This race is basically the safest One Battle after Another checkmark: Critics Choice, WGA, BAFTA, Vanity Fair, and The New Yorker all have it.", 
         sources:["Vanity Fair", "New Yorker", "Critics Choice", "WGA", "BAFTA", "Polymarket"],
-        noms:["Bugonia", "Frankenstein", "Hamnet", "One Battle after Another", "Train Dreams"] 
+        noms:["Bugonia", "Frankenstein", "Hamnet", "One Battle after Another", "Train Dreams"],
+        winner: null
       },
       { 
         cat: "Original Screenplay", pick: "Sinners", 
@@ -653,7 +735,8 @@
         challenger: "Sentimental Value", tier: "lock", 
         text: "Original Screenplay has become the cleanest Sinners play: WGA, BAFTA, Vanity Fair, The New Yorker, and the market all align.", 
         sources:["Vanity Fair", "New Yorker", "Critics Choice", "WGA", "BAFTA", "Polymarket"],
-        noms:["Blue Moon", "It Was Just an Accident", "Marty Supreme", "Sentimental Value", "Sinners"] 
+        noms:["Blue Moon", "It Was Just an Accident", "Marty Supreme", "Sentimental Value", "Sinners"],
+        winner: null
       }
     ];
 
@@ -667,14 +750,19 @@
       cats.forEach(catName => {
         const catData = oscarData.find(d => d.cat === catName);
         if(!catData) return;
-        
+
         html += `<div class="cat-group"><h3>${catName}</h3>`;
         catData.noms.forEach(nom => {
-          // Splitting at the comma to match the pick string safely
-          const movieTitleMatch = catData.pick.split(" - ")[0].trim();
-          const isWinner = nom.includes(movieTitleMatch);
+          const pickName = catData.pick.split(" - ")[0].trim();
+          const isPick = nom.includes(pickName);
+          const isActualWinner = catData.winner && nom.includes(catData.winner);
+          const pickWasWrong = isPick && catData.winner && !isActualWinner;
+          let classes = "nominee";
+          if (isPick) classes += " checked";
+          if (isActualWinner) classes += " winner";
+          if (pickWasWrong) classes += " wrong";
           html += `
-            <div class="nominee ${isWinner ? 'checked' : ''}">
+            <div class="${classes}">
               <div class="checkbox"></div>
               <span>${nom}</span>
             </div>
@@ -739,14 +827,25 @@
         return `<a class="source-tag" href="${sourceUrl}" target="_blank" rel="noopener noreferrer">${source}</a>`;
       }).join("");
 
+      const pickName = d.pick.split(" - ")[0].trim();
+      const isCorrect = d.winner && d.pick.includes(d.winner);
+      const isWrong = d.winner && !isCorrect;
+      const resultHTML = d.winner
+        ? `<div class="result-badge ${isCorrect ? 'correct' : 'incorrect'}">${isCorrect ? 'Correct' : 'Incorrect'}</div>`
+        : '';
+      const winnerLine = (isWrong && d.winner)
+        ? `<div class="actual-winner">Winner: ${d.winner}</div>`
+        : '';
+
       analysisHTML += `
         <div class="card ${d.tier}">
           <div class="card-header">
             <h3>${d.cat}</h3>
             <span class="badge ${d.tier}">${d.tier}</span>
           </div>
-          
+          ${resultHTML}
           <div class="pick-highlight">${d.pick}</div>
+          ${winnerLine}
           
           <div class="conf-bar-bg">
             <div class="conf-bar-fill" style="width: ${d.combined_pct}%;"></div>
@@ -780,6 +879,19 @@
       `;
     });
     analysisContainer.innerHTML = analysisHTML;
+
+    // Scoreboard
+    const decided = oscarData.filter(d => d.winner);
+    if (decided.length > 0) {
+      const correct = decided.filter(d => d.pick.includes(d.winner)).length;
+      const wrong = decided.length - correct;
+      const pending = oscarData.length - decided.length;
+      document.getElementById('score-correct').textContent = correct;
+      document.getElementById('score-wrong').textContent = wrong;
+      document.getElementById('score-pending').textContent = pending;
+      document.getElementById('score-pct').textContent = Math.round((correct / decided.length) * 100) + '%';
+      document.getElementById('scoreboard').style.display = 'block';
+    }
 
     // Initialize tab from URL hash and keep in sync with back/forward navigation
     switchTab(getTabFromHash());
