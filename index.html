@@ -226,14 +226,21 @@
       font-weight: bold;
       color: #7c6200;
     }
+    /* Correct pick: green check after the winner name */
     .nominee.checked.winner span::after {
       content: " \2714";
       color: #16a34a;
       font-weight: 800;
     }
+    /* Wrong pick: strikethrough + red X */
     .nominee.checked.wrong span {
       text-decoration: line-through;
       opacity: 0.5;
+    }
+    .nominee.checked.wrong span::after {
+      content: " \2718";
+      color: #dc2626;
+      font-weight: 800;
     }
 
     /* Result badge on analysis cards */
