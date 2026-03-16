@@ -671,7 +671,7 @@
         text: "Vanity Fair and Polymarket both shade this toward Two People Exchanging Saliva. That is enough for a pool answer, but the live-action short field is still close.", 
         sources:["Vanity Fair", "Polymarket"],
         noms:["Butcher's Stain", "A Friend of Dorothy", "Jane Austen's Period Drama", "The Singers", "Two People Exchanging Saliva"],
-        winner: "The Singers"
+        winner: ["The Singers", "Two People Exchanging Saliva"]
       },
       { 
         cat: "Makeup and Hairstyling", pick: "Frankenstein", 
@@ -752,18 +752,34 @@
     const col2Cats =["Best Picture", "Costume Design", "Directing", "Documentary Feature Film", "Documentary Short Film", "Film Editing", "International Feature Film", "Live Action Short Film"];
     const col3Cats =["Makeup and Hairstyling", "Original Score", "Original Song", "Production Design", "Sound", "Visual Effects", "Adapted Screenplay", "Original Screenplay"];
 
+    // Helper: normalize winner to array, check if a nominee or pick matches any winner
+    function getWinners(d) {
+      if (!d.winner) return [];
+      return Array.isArray(d.winner) ? d.winner : [d.winner];
+    }
+    function isWinner(nom, winners) {
+      return winners.some(w => nom.includes(w));
+    }
+    function pickIsCorrect(d) {
+      const winners = getWinners(d);
+      if (winners.length === 0) return null;
+      const pickName = d.pick.split(" - ")[0].trim();
+      return winners.some(w => w.includes(pickName) || pickName.includes(w));
+    }
+
     function buildBallotColumn(cats) {
       let html = `<div class="ballot-col">`;
       cats.forEach(catName => {
         const catData = oscarData.find(d => d.cat === catName);
         if(!catData) return;
+        const winners = getWinners(catData);
 
         html += `<div class="cat-group"><h3>${catName}</h3>`;
         catData.noms.forEach(nom => {
           const pickName = catData.pick.split(" - ")[0].trim();
           const isPick = nom.includes(pickName);
-          const isActualWinner = catData.winner && nom.includes(catData.winner);
-          const pickWasWrong = isPick && catData.winner && !isActualWinner;
+          const isActualWinner = isWinner(nom, winners);
+          const pickWasWrong = isPick && winners.length > 0 && !isActualWinner;
           let classes = "nominee";
           if (isPick) classes += " checked";
           if (isActualWinner) classes += " winner";
@@ -834,14 +850,13 @@
         return `<a class="source-tag" href="${sourceUrl}" target="_blank" rel="noopener noreferrer">${source}</a>`;
       }).join("");
 
-      const pickName = d.pick.split(" - ")[0].trim();
-      const isCorrect = d.winner && d.pick.includes(d.winner);
-      const isWrong = d.winner && !isCorrect;
-      const resultHTML = d.winner
-        ? `<div class="result-badge ${isCorrect ? 'correct' : 'incorrect'}">${isCorrect ? 'Correct' : 'Incorrect'}</div>`
+      const winners = getWinners(d);
+      const correct = pickIsCorrect(d);
+      const resultHTML = winners.length > 0
+        ? `<div class="result-badge ${correct ? 'correct' : 'incorrect'}">${correct ? 'Correct' : 'Incorrect'}</div>`
         : '';
-      const winnerLine = (isWrong && d.winner)
-        ? `<div class="actual-winner">Winner: ${d.winner}</div>`
+      const winnerLine = (winners.length > 0 && !correct)
+        ? `<div class="actual-winner">Winner: ${winners.join(' & ')}</div>`
         : '';
 
       analysisHTML += `
@@ -888,9 +903,9 @@
     analysisContainer.innerHTML = analysisHTML;
 
     // Scoreboard
-    const decided = oscarData.filter(d => d.winner);
+    const decided = oscarData.filter(d => getWinners(d).length > 0);
     if (decided.length > 0) {
-      const correct = decided.filter(d => d.pick.includes(d.winner)).length;
+      const correct = decided.filter(d => pickIsCorrect(d)).length;
       const wrong = decided.length - correct;
       const pending = oscarData.length - decided.length;
       document.getElementById('score-correct').textContent = correct;
